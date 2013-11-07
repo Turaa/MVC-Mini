@@ -4,15 +4,15 @@
 <h2>Download</h2>
 <p>You can download Mini from github.</p>
 <blockquote>
-<code>git clone git://github.com/Turaa/Mini.git</code>
+<code>git clone git://github.com/Turaa/MVC-Mini.git</code>
 </blockquote>
-<p>You can review its source directly on github: <a href='https://github.com/Turaa/Mini'>https://github.com/Turaa/Mini</a></p>
+<p>You can review its source directly on github: <a href='https://github.com/Turaa/MVC-Mini'>https://github.com/Turaa/MVC-Mini</a></p>
 
 <h2>Installation</h2>
 <p>First you have to make the data-directory writable. This is the place where Mini needs
 to be able to write and create files.</p>
 <blockquote>
-<code>cd mini; chmod 777 site/data</code>
+<code>cd MVC-Mini; chmod 777 site/data</code>
 </blockquote>
 
 <p>Second, Mini has some modules that need to be initialised. You can do this through a
