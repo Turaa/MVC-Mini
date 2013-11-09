@@ -13,15 +13,15 @@ You can review its source directly on github: <b>https://github.com/Turaa/MVC-Mi
 
 <h4>Installation</h4>
 
-Upload the MVC-Mini to your server by using a ftp-program. (Example FileZilla).
-
 Open the <b>.htaccess</b> file with a text editor (Example JEdit). <b>.htaccess</b> is located in your root-folder,
 <br>change the address in line 4 <i>(RewriteBase /~tutu13/mvc/MVC-Mini/)</i> to your installation.
 
 Make the data-directory <b>writeable</b>. This is the place where MVC-Mini needs to be able to write and create files.  
 Easiest way to do this is to do it in your ftp-program. (Example FileZilla).
 Right-click on the folder "data" in <b>site/data</b> 
-<br>and change <b>file permissions</b> to <b>777</b>. <b>Make sure to change the .sqlite file in data to 777 too.</b>
+<br>and change <b>file permissions</b> to <b>777</b>. <b>Make sure to change the .sqlite file in "data" to 777 too.</b>
+<p>
+Upload the MVC-Mini to your server by using a ftp-program. (Example FileZilla).
 <p>
 Finally, MVC-Mini has some modules that need to be initialised. Visit your framework in your 
 <br>webbrowser and point your browser to the following link; <b>module/install.</b>
@@ -31,8 +31,8 @@ Finally, MVC-Mini has some modules that need to be initialised. Visit your frame
 Open the file config in <b>site/config.php</b> in a text editor (Example JEdit).
 
 At the bottom you will find; <b>header, slogan, favicon, logo, footer</b> etc. Edit the file to suit your needs. 
-<br>If you choose to change the logo you will find the image source in <b>themes/grid/</b>.
-<br>Make sure to name your image "logo_80x80.png", otherwise it will not work. 
+<br>If you choose to change the logo you will find the image source in <b>site/themes/mytheme</b>.
+ 
 <p>A bit further up in <b>site/config.php</b> you will find the <b>navigationbar</b>. (Look for Define menus). 
 <br>To make a new page - add a line at the end of 'my-navbar' => array(
 
