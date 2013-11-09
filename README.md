@@ -15,14 +15,15 @@ You can review its source directly on github: <b>https://github.com/Turaa/MVC-Mi
 
 Open the <b>.htaccess</b> file with a text editor (Example JEdit). <b>.htaccess</b> is located in your root-folder,
 <br>change the address in line 4 <i>(RewriteBase /~tutu13/mvc/MVC-Mini/)</i> to your installation.
-
+<p>
+Upload the MVC-Mini to your server by using a ftp-program. (Example FileZilla).
+<p>
 Make the data-directory <b>writeable</b>. This is the place where MVC-Mini needs to be able to write and create files.  
 Easiest way to do this is to do it in your ftp-program. (Example FileZilla).
 Right-click on the folder "data" in <b>site/data</b> 
 <br>and change <b>file permissions</b> to <b>777</b>. <b>Make sure to change the .sqlite file in "data" to 777 too.</b>
 <p>
-Upload the MVC-Mini to your server by using a ftp-program. (Example FileZilla).
-<p>
+
 Finally, MVC-Mini has some modules that need to be initialised. Visit your framework in your 
 <br>webbrowser and point your browser to the following link; <b>module/install.</b>
 
