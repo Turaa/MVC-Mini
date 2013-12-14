@@ -4,6 +4,12 @@
 <p>Here is a list of helping methods for theme developing and testing.</p>
 <ul>
 <?php foreach($methods as $val): ?>
+<<<<<<< HEAD
   <li><a href='<?=create_url($val)?>'><?=$val?></a>
 <?php endforeach; ?>
 </ul>
+=======
+<li><a href='<?=create_url($val)?>'><?=$val?></a>
+<?php endforeach; ?>
+</ul>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

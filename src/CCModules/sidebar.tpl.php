@@ -3,11 +3,15 @@
 <p>All Mini modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
 
   <li><?=$module['name']?></li>
 
+=======
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -18,6 +22,7 @@
 <p>Mini core modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if($module['isMiniCore']): ?>
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
@@ -25,6 +30,11 @@
   <li><?=$module['name']?></li>
 
   <?php endif; ?>
+=======
+<?php if($module['isMiniCore']): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -35,6 +45,7 @@
 <p>Mini Content Management Framework (CMF) modules.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if($module['isMiniCMF']): ?>
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
@@ -42,6 +53,11 @@
   <li><?=$module['name']?></li>
 
   <?php endif; ?>
+=======
+<?php if($module['isMiniCMF']): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -52,6 +68,7 @@
 <p>A class is considered a model if its name starts with CM.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if($module['isModel']): ?>
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
@@ -59,6 +76,11 @@
   <li><?=$module['name']?></li>
 
   <?php endif; ?>
+=======
+<?php if($module['isModel']): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -69,10 +91,16 @@
 <p>Implements interface <code>IController</code>.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if($module['isController']): ?>
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
   <?php endif; ?>
+=======
+<?php if($module['isController']): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -83,12 +111,18 @@
 <p>Implements interface <code>IModule</code>.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if($module['isManageable']): ?>
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
 
   <li><?=$module['name']?></li>
 
   <?php endif; ?>
+=======
+<?php if($module['isManageable']): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -99,6 +133,7 @@
 <p>Implements interface <code>IHasSQL</code>.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if($module['hasSQL']): ?>
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
@@ -106,6 +141,11 @@
   <li><?=$module['name']?></li>
 
   <?php endif; ?>
+=======
+<?php if($module['hasSQL']): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <?php endforeach; ?>
 </ul>
 </div>
@@ -116,6 +156,7 @@
 <p>Modules that does not implement any specific Mini interface.</p>
 <ul>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <?php if(!($module['isController'] || $module['isMiniCore'] || $module['isMiniCMF'])): ?>
 
   <li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
@@ -126,3 +167,11 @@
 <?php endforeach; ?>
 </ul>
 </div>
+=======
+<?php if(!($module['isController'] || $module['isMiniCore'] || $module['isMiniCMF'])): ?>
+<li><a href='<?=create_url("module/view/{$module['name']}")?>'><?=$module['name']?></a></li>
+<?php endif; ?>
+<?php endforeach; ?>
+</ul>
+</div>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

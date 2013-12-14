@@ -6,6 +6,7 @@
 */
 class CMini implements ISingleton {
 
+<<<<<<< HEAD
 	/**
 	 * Members
 	 */
@@ -68,10 +69,76 @@ class CMini implements ISingleton {
     * Frontcontroller, check url and route to controllers.
     */
  public function FrontControllerRoute() {
+=======
+        /**
+         * Members
+         */
+        private static $instance = null;
+        public $config = array();
+        public $request;
+        public $data;
+        public $db;
+        public $views;
+        public $session;
+        public $user;
+        public $timer = array();
+        
+        
+        /**
+         * Constructor
+         */
+        protected function __construct() {
+                // time page generation
+                $this->timer['first'] = microtime(true);
+
+                // include the site specific config.php and create a ref to $mi to be used by config.php
+                $mi = &$this;
+    require(MINI_SITE_PATH.'/config.php');
+
+                // Start a named session
+                session_name($this->config['session_name']);
+                session_start();
+                $this->session = new CSession($this->config['session_key']);
+                $this->session->PopulateFromSession();
+                
+                // Set default date/time-zone
+                date_default_timezone_set('UTC');
+                
+                // Create a database object.
+                if(isset($this->config['database'][0]['dsn'])) {
+                  $this->db = new CDatabase($this->config['database'][0]['dsn']);
+          }
+          
+          // Create a container for all views and theme data
+          $this->views = new CViewContainer();
+
+          // Create a object for the user
+          $this->user = new CMUser($this);
+  }
+  
+  
+  /**
+         * Singleton pattern. Get the instance of the latest created object or create a new one.
+         * @return CMini The instance of this class.
+         */
+        public static function Instance() {
+                if(self::$instance == null) {
+                        self::$instance = new CMini();
+                }
+                return self::$instance;
+        }
+        
+
+        /**
+         * Frontcontroller, check url and route to controllers.
+         */
+  public function FrontControllerRoute() {
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     // Take current url and divide it in controller, method and parameters
     $this->request = new CRequest($this->config['url_type']);
     $this->request->Init($this->config['base_url'], $this->config['routing']);
     $controller = $this->request->controller;
+<<<<<<< HEAD
     $method     = $this->request->method;
     $arguments  = $this->request->arguments;
 
@@ -92,21 +159,51 @@ class CMini implements ISingleton {
       $rc = new ReflectionClass($className);
       if($rc->implementsInterface('IController')) {
       	$formattedMethod = str_replace(array('_', '-'), '', $method);
+=======
+    $method = $this->request->method;
+    $arguments = $this->request->arguments;
+    
+    // Is the controller enabled in config.php?
+    $controllerExists         = isset($this->config['controllers'][$controller]);
+    $controllerEnabled         = false;
+    $className                         = false;
+    $classExists                  = false;
+
+    if($controllerExists) {
+      $controllerEnabled         = ($this->config['controllers'][$controller]['enabled'] == true);
+      $className                                        = $this->config['controllers'][$controller]['class'];
+      $classExists                  = class_exists($className);
+    }
+    
+    // Check if controller has a callable method in the controller class, if then call it
+    if($controllerExists && $controllerEnabled && $classExists) {
+      $rc = new ReflectionClass($className);
+      if($rc->implementsInterface('IController')) {
+         $formattedMethod = str_replace(array('_', '-'), '', $method);
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
         if($rc->hasMethod($formattedMethod)) {
           $controllerObj = $rc->newInstance();
           $methodObj = $rc->getMethod($formattedMethod);
           if($methodObj->isPublic()) {
             $methodObj->invokeArgs($controllerObj, $arguments);
+<<<<<<< HEAD
           }  else {
             die("404. " . get_class() . ' error: Controller method not public.');          
           } 
         
       } else {
+=======
+          } else {
+            die("404. " . get_class() . ' error: Controller method not public.');
+          }
+        } else {
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
           die("404. " . get_class() . ' error: Controller does not contain method.');
         }
       } else {
         die('404. ' . get_class() . ' error: Controller does not implement interface IController.');
       }
+<<<<<<< HEAD
     } 
     else { 
       die('404. Page is not found.');
@@ -117,6 +214,18 @@ class CMini implements ISingleton {
     /**
    * ThemeEngineRender, renders the reply of the request to HTML or whatever.
    */
+=======
+    }
+    else {
+      die('404. Page is not found.');
+    }
+  }
+  
+  
+  /**
+* ThemeEngineRender, renders the reply of the request to HTML or whatever.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function ThemeEngineRender() {
     // Save to session before output anything
     $this->session->StoreInSession();
@@ -124,15 +233,23 @@ class CMini implements ISingleton {
     // Is theme enabled?
     if(!isset($this->config['theme'])) { return; }
     
+<<<<<<< HEAD
      // Get the paths and settings for the theme, look in the site dir first
     $themePath 	= MINI_INSTALL_PATH . '/' . $this->config['theme']['path'];
     $themeUrl		= $this->request->base_url . $this->config['theme']['path'];
     
+=======
+    // Get the paths and settings for the theme, look in the site dir first
+    $themePath         = MINI_INSTALL_PATH . '/' . $this->config['theme']['path'];
+    $themeUrl                = $this->request->base_url . $this->config['theme']['path'];
+
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     // Is there a parent theme?
     $parentPath = null;
     $parentUrl = null;
     if(isset($this->config['theme']['parent'])) {
       $parentPath = MINI_INSTALL_PATH . '/' . $this->config['theme']['parent'];
+<<<<<<< HEAD
       $parentUrl	= $this->request->base_url . $this->config['theme']['parent'];
     }
     
@@ -140,6 +257,15 @@ class CMini implements ISingleton {
     $this->data['stylesheet'] = $this->config['theme']['stylesheet'];
     
       // Make the theme urls available as part of $ly
+=======
+      $parentUrl        = $this->request->base_url . $this->config['theme']['parent'];
+    }
+    
+    // Add stylesheet name to the $mi->data array
+    $this->data['stylesheet'] = $this->config['theme']['stylesheet'];
+    
+    // Make the theme urls available as part of $mi
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     $this->themeUrl = $themeUrl;
     $this->themeParentUrl = $parentUrl;
     
@@ -149,8 +275,13 @@ class CMini implements ISingleton {
         $this->views->AddString($this->DrawMenu($key), null, $val);
       }
     }
+<<<<<<< HEAD
     
      // Include the global functions.php and the functions.php that are part of the theme
+=======
+
+    // Include the global functions.php and the functions.php that are part of the theme
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     $mi = &$this;
     // First the default Mini themes/functions.php
     include(MINI_INSTALL_PATH . '/themes/functions.php');
@@ -166,11 +297,19 @@ class CMini implements ISingleton {
     }
 
     // Extract $mi->data to own variables and handover to the template file
+<<<<<<< HEAD
      extract($this->data);      
+=======
+    extract($this->data); // OBSOLETE, use $this->views->GetData() to set variables
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     extract($this->views->GetData());
     if(isset($this->config['theme']['data'])) {
       extract($this->config['theme']['data']);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     // Execute the template file
     $templateFile = (isset($this->config['theme']['template_file'])) ? $this->config['theme']['template_file'] : 'default.tpl.php';
     if(is_file("{$themePath}/{$templateFile}")) {
@@ -181,6 +320,7 @@ class CMini implements ISingleton {
       throw new Exception('No such template file.');
     }
   }
+<<<<<<< HEAD
   
   
   /**
@@ -200,12 +340,34 @@ class CMini implements ISingleton {
     if(isset($this->config['debug']['timer']) && $this->config['debug']['timer']) {
 	    $this->session->SetFlash('timer', $this->timer);
     }    
+=======
+
+
+        /**
+         * Redirect to another url and store the session, all redirects should use this method.
+*
+         * @param $url string the relative url or the controller
+         * @param $method string the method to use, $url is then the controller or empty for current controller
+         * @param $arguments string the extra arguments to send to the method
+         */
+        public function RedirectTo($urlOrController=null, $method=null, $arguments=null) {
+    if(isset($this->config['debug']['db-num-queries']) && $this->config['debug']['db-num-queries'] && isset($this->db)) {
+      $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
+    }
+    if(isset($this->config['debug']['db-queries']) && $this->config['debug']['db-queries'] && isset($this->db)) {
+      $this->session->SetFlash('database_queries', $this->db->GetQueries());
+    }
+    if(isset($this->config['debug']['timer']) && $this->config['debug']['timer']) {
+         $this->session->SetFlash('timer', $this->timer);
+    }
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     $this->session->StoreInSession();
     header('Location: ' . $this->request->CreateUrl($urlOrController, $method, $arguments));
     exit;
   }
 
 
+<<<<<<< HEAD
 	/**
 	 * Redirect to a method within the current controller. Defaults to index-method. Uses RedirectTo().
 	 *
@@ -213,10 +375,20 @@ class CMini implements ISingleton {
 	 * @param $arguments string the extra arguments to send to the method
 	 */
 	public function RedirectToController($method=null, $arguments=null) {
+=======
+        /**
+         * Redirect to a method within the current controller. Defaults to index-method. Uses RedirectTo().
+         *
+         * @param string method name the method, default is index method.
+         * @param $arguments string the extra arguments to send to the method
+         */
+        public function RedirectToController($method=null, $arguments=null) {
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     $this->RedirectTo($this->request->controller, $method, $arguments);
   }
 
 
+<<<<<<< HEAD
 	/**
 	 * Redirect to a controller and method. Uses RedirectTo().
 	 *
@@ -227,10 +399,23 @@ class CMini implements ISingleton {
 	public function RedirectToControllerMethod($controller=null, $method=null, $arguments=null) {
 	  $controller = is_null($controller) ? $this->request->controller : null;
 	  $method = is_null($method) ? $this->request->method : null;	  
+=======
+        /**
+         * Redirect to a controller and method. Uses RedirectTo().
+         *
+         * @param string controller name the controller or null for current controller.
+         * @param string method name the method, default is current method.
+         * @param $arguments string the extra arguments to send to the method
+         */
+        public function RedirectToControllerMethod($controller=null, $method=null, $arguments=null) {
+         $controller = is_null($controller) ? $this->request->controller : null;
+         $method = is_null($method) ? $this->request->method : null;        
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     $this->RedirectTo($this->request->CreateUrl($controller, $method, $arguments));
   }
 
 
+<<<<<<< HEAD
 	/**
 	 * Save a message in the session. Uses $this->session->AddMessage()
 	 *
@@ -238,6 +423,15 @@ class CMini implements ISingleton {
    * @param $message string the message.
    * @param $alternative string the message if the $type is set to false, defaults to null.
    */
+=======
+        /**
+         * Save a message in the session. Uses $this->session->AddMessage()
+         *
+* @param $type string the type of message, for example: notice, info, success, warning, error.
+* @param $message string the message.
+* @param $alternative string the message if the $type is set to false, defaults to null.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function AddMessage($type, $message, $alternative=null) {
     if($type === false) {
       $type = 'error';
@@ -249,6 +443,7 @@ class CMini implements ISingleton {
   }
 
 
+<<<<<<< HEAD
 	/**
 	 * Create an url. Wrapper and shorter method for $this->request->CreateUrl()
 	 *
@@ -257,16 +452,34 @@ class CMini implements ISingleton {
 	 * @param $arguments string the extra arguments to send to the method
 	 */
 	public function CreateUrl($urlOrController=null, $method=null, $arguments=null) {
+=======
+        /**
+         * Create an url. Wrapper and shorter method for $this->request->CreateUrl()
+         *
+         * @param $urlOrController string the relative url or the controller
+         * @param $method string the method to use, $url is then the controller or empty for current
+         * @param $arguments string the extra arguments to send to the method
+         */
+        public function CreateUrl($urlOrController=null, $method=null, $arguments=null) {
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     return $this->request->CreateUrl($urlOrController, $method, $arguments);
   }
 
 
   /**
+<<<<<<< HEAD
    * Draw HTML for a menu defined in $mi->config['menus'].
    *
    * @param $menu string then key to the menu in the config-array.
    * @returns string with the HTML representing the menu.
    */
+=======
+* Draw HTML for a menu defined in $mi->config['menus'].
+*
+* @param $menu string then key to the menu in the config-array.
+* @returns string with the HTML representing the menu.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function DrawMenu($menu) {
     $items = null;
     if(isset($this->config['menus'][$menu])) {
@@ -279,8 +492,17 @@ class CMini implements ISingleton {
       }
     } else {
       throw new Exception('No such menu.');
+<<<<<<< HEAD
     }     
     return "<ul class='menu {$menu}'>\n{$items}</ul>\n";
   }
 
 }
+=======
+    }
+    return "<ul class='menu {$menu}'>\n{$items}</ul>\n";
+  }
+
+
+}
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

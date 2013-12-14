@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * A form to manage content.
  * 
  * @package MiniCore
@@ -14,6 +15,22 @@ class CFormContent extends CForm {
   /**
    * Constructor                                                                          
    */
+=======
+* A form to manage content.
+*
+* @package MiniCore
+*/
+class CFormContent extends CForm {
+
+  /**
+* Properties
+*/
+  private $content;
+
+  /**
+* Constructor
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function __construct($content) {
     parent::__construct();
     $this->content = $content;
@@ -32,6 +49,7 @@ class CFormContent extends CForm {
   }
   
 
+<<<<<<< HEAD
  /**
    * Callback to save the form content to database.
    */
@@ -41,14 +59,30 @@ class CFormContent extends CForm {
     $content['key']    = $form['key']['value'];
     $content['data']   = $form['data']['value'];
     $content['type']   = $form['type']['value'];
+=======
+  /**
+* Callback to save the form content to database.
+*/
+  public function DoSave($form, $content) {
+    $content['id'] = $form['id']['value'];
+    $content['title'] = $form['title']['value'];
+    $content['key'] = $form['key']['value'];
+    $content['data'] = $form['data']['value'];
+    $content['type'] = $form['type']['value'];
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
     $content['filter'] = $form['filter']['value'];
     return $content->Save();
   }
   
   
   /**
+<<<<<<< HEAD
    * Callback to delete the content.
    */
+=======
+* Callback to delete the content.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function DoDelete($form, $content) {
     $content['id'] = $form['id']['value'];
     $content->Delete();
@@ -56,4 +90,8 @@ class CFormContent extends CForm {
   }
   
   
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

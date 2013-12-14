@@ -3,6 +3,7 @@
 * Helpers for theming, available for all themes in their template files and functions.php.
 * This file is included right before the themes own functions.php
 */
+<<<<<<< HEAD
 
 /**
  * Print debuginformation from the framework.
@@ -10,6 +11,50 @@
 function get_debug() {
    // Only if debug is wanted.
   $mi = CMini::Instance();  
+=======
+ 
+
+/**
+* Get list of tools.
+*/
+function get_tools() {
+  global $mi;
+  return <<<EOD
+<p>Tools:
+<a href="http://validator.w3.org/check/referer">html5</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">css3</a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css21">css21</a>
+<a href="http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance">unicorn</a>
+<a href="http://validator.w3.org/checklink?uri={$mi->request->current_url}">links</a>
+<a href="http://qa-dev.w3.org/i18n-checker/index?async=false&amp;docAddr={$mi->request->current_url}">i18n</a>
+<!-- <a href="link?">http-header</a> -->
+<a href="http://csslint.net/">css-lint</a>
+<a href="http://jslint.com/">js-lint</a>
+<a href="http://jsperf.com/">js-perf</a>
+<a href="http://www.workwithcolor.com/hsl-color-schemer-01.htm">colors</a>
+<a href="http://dbwebb.se/style">style</a>
+</p>
+
+<p>Docs:
+<a href="http://www.w3.org/2009/cheatsheet">cheatsheet</a>
+<a href="http://dev.w3.org/html5/spec/spec.html">html5</a>
+<a href="http://www.w3.org/TR/CSS2">css2</a>
+<a href="http://www.w3.org/Style/CSS/current-work#CSS3">css3</a>
+<a href="http://php.net/manual/en/index.php">php</a>
+<a href="http://www.sqlite.org/lang.html">sqlite</a>
+<a href="http://www.blueprintcss.org/">blueprint</a>
+</p>
+EOD;
+}
+
+
+/**
+* Print debuginformation from the framework.
+*/
+function get_debug() {
+  // Only if debug is wanted.
+  $mi = CMini::Instance();
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   if(empty($mi->config['debug'])) {
     return;
   }
@@ -20,7 +65,11 @@ function get_debug() {
     $flash = $mi->session->GetFlash('database_numQueries');
     $flash = $flash ? "$flash + " : null;
     $html .= "<p>Database made $flash" . $mi->db->GetNumQueries() . " queries.</p>";
+<<<<<<< HEAD
   }    
+=======
+  }
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   if(isset($mi->config['debug']['db-queries']) && $mi->config['debug']['db-queries'] && isset($mi->db)) {
     $flash = $mi->session->GetFlash('database_queries');
     $queries = $mi->db->GetQueries();
@@ -28,6 +77,7 @@ function get_debug() {
       $queries = array_merge($flash, $queries);
     }
     $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $queries) . "</pre>";
+<<<<<<< HEAD
   }    
   if(isset($mi->config['debug']['timer']) && $mi->config['debug']['timer']) {
     $html .= "<p>Page was loaded in " . round(microtime(true) - $mi->timer['first'], 5)*1000 . " msecs.</p>";
@@ -39,6 +89,19 @@ function get_debug() {
     $html .= "<hr><h3>SESSION</h3><p>The content of CMini->session:</p><pre>" . htmlent(print_r($mi->session, true)) . "</pre>";
     $html .= "<p>The content of \$_SESSION:</p><pre>" . htmlent(print_r($_SESSION, true)) . "</pre>";
   }    
+=======
+  }
+  if(isset($mi->config['debug']['timer']) && $mi->config['debug']['timer']) {
+    $html .= "<p>Page was loaded in " . round(microtime(true) - $mi->timer['first'], 5)*1000 . " msecs.</p>";
+  }
+  if(isset($mi->config['debug']['mini']) && $mi->config['debug']['mini']) {
+    $html .= "<hr><h3>Debuginformation</h3><p>The content of CMini:</p><pre>" . htmlent(print_r($mi, true)) . "</pre>";
+  }
+  if(isset($mi->config['debug']['session']) && $mi->config['debug']['session']) {
+    $html .= "<hr><h3>SESSION</h3><p>The content of CMini->session:</p><pre>" . htmlent(print_r($mi->session, true)) . "</pre>";
+    $html .= "<p>The content of \$_SESSION:</p><pre>" . htmlent(print_r($_SESSION, true)) . "</pre>";
+  }
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   return $html;
 }
 
@@ -59,9 +122,16 @@ function get_messages_from_session() {
   return $html;
 }
 
+<<<<<<< HEAD
 /**
  * Login menu. Creates a menu which reflects if user is logged in or not.
  */
+=======
+
+/**
+* Login menu. Creates a menu which reflects if user is logged in or not.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 function login_menu() {
   $mi = CMini::Instance();
   if($mi->user['isAuthenticated']) {
@@ -81,17 +151,30 @@ function login_menu() {
 * Get a gravatar based on the user's email.
 */
 function get_gravatar($size=null) {
+<<<<<<< HEAD
   return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim(CMini::Instance()->user['email']))) . '.jpg?' . ($size ? "s=$size" : null);
+=======
+  return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim(CMini::Instance()->user['email']))) . '.jpg?r=pg&amp;d=wavatar&amp;' . ($size ? "s=$size" : null);
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 }
 
 
 /**
+<<<<<<< HEAD
  * Escape data to make it safe to write in the browser.
  */
+=======
+* Escape data to make it safe to write in the browser.
+*
+* @param $str string to escape.
+* @returns string the escaped string.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 function esc($str) {
   return htmlEnt($str);
 }
 
+<<<<<<< HEAD
 /**
  * Filter data according to a filter. Uses CMContent::Filter()
  *
@@ -99,29 +182,56 @@ function esc($str) {
  * @param $filter string the filter to use.
  * @returns string the filtered string.
  */
+=======
+
+/**
+* Filter data according to a filter. Uses CMContent::Filter()
+*
+* @param $data string the data-string to filter.
+* @param $filter string the filter to use.
+* @returns string the filtered string.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 function filter_data($data, $filter) {
   return CMContent::Filter($data, $filter);
 }
 
+<<<<<<< HEAD
 /**
  * Display diff of time between now and a datetime. 
  *
  * @param $start datetime|string
  * @returns string
  */
+=======
+
+/**
+* Display diff of time between now and a datetime.
+*
+* @param $start datetime|string
+* @returns string
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 function time_diff($start) {
   return formatDateTimeDiff($start);
 }
 
 
+<<<<<<< HEAD
 
 /**
  * Prepend the base_url.
  */
+=======
+/**
+* Prepend the base_url.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 function base_url($url=null) {
   return CMini::Instance()->request->base_url . trim($url, '/');
 }
 
+<<<<<<< HEAD
 /**
  * Create a url to an internal resource.
  *
@@ -133,6 +243,21 @@ function create_url($urlOrController=null, $method=null, $arguments=null) {
   return CMini::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
 }
 
+=======
+
+/**
+* Create a url to an internal resource.
+*
+* @param string the whole url or the controller. Leave empty for current controller.
+* @param string the method when specifying controller as first argument, else leave empty.
+* @param string the extra arguments to the method, leave empty if not using method.
+*/
+function create_url($urlOrController=null, $method=null, $arguments=null) {
+  return CMini::Instance()->CreateUrl($urlOrController, $method, $arguments);
+}
+
+
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 /**
 * Prepend the theme_url, which is the url to the current theme directory.
 *
@@ -143,6 +268,10 @@ function theme_url($url) {
   return create_url(CMini::Instance()->themeUrl . "/{$url}");
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 /**
 * Prepend the theme_parent_url, which is the url to the parent theme directory.
 *
@@ -161,6 +290,10 @@ function current_url() {
   return CMini::Instance()->request->current_url;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 /**
 * Render all views.
 *
@@ -170,6 +303,7 @@ function render_views($region='default') {
   return CMini::Instance()->views->Render($region);
 }
 
+<<<<<<< HEAD
 /**
  * Check if region has views. Accepts variable amount of arguments as regions.
  *
@@ -178,3 +312,14 @@ function render_views($region='default') {
 function region_has_content($region='default' /*...*/) {
   return CMini::Instance()->views->RegionHasView(func_get_args());
 }
+=======
+
+/**
+* Check if region has views. Accepts variable amount of arguments as regions.
+*
+* @param $region string the region to draw the content in.
+*/
+function region_has_content($region='default' /*...*/) {
+  return CMini::Instance()->views->RegionHasView(func_get_args());
+}
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

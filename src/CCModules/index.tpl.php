@@ -6,13 +6,30 @@
 has its own subdirectory in the <code>src</code>-directory.</p>
 
 
+<<<<<<< HEAD
 <h2>Enabled controllers</h2>
 <p>The controllers make up the public API of this website. Here is a list of the enabled 
 controllers and their methods. You enable and disable controllers in 
+=======
+<h2>Manage Mini modules</h2>
+<p>A module can implement the interface <code>IModule</code>
+which makes it a manageable module. Mini provides a administrating interface for these
+modules. You can perform the following actions through this interface:</p>
+
+<ul>
+  <li><a href='<?=create_url('module/install')?>'>install</a></li>
+</ul>
+
+
+<h2>Enabled controllers</h2>
+<p>The controllers make up the public API of this website. Here is a list of the enabled
+controllers and their methods. You enable and disable controllers in
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 <code>site/config.php</code>.</p>
 
 <ul>
 <?php foreach($controllers as $key => $val): ?>
+<<<<<<< HEAD
   <li><a href='<?=create_url($key)?>'><?=$key?></a></li>
 
   <?php if(!empty($val)): ?>
@@ -25,3 +42,16 @@ controllers and their methods. You enable and disable controllers in
   
 <?php endforeach; ?>    
 </ul>
+=======
+<li><a href='<?=create_url($key)?>'><?=$key?></a></li>
+
+<?php if(!empty($val)): ?>
+<ul>
+<?php foreach($val as $method): ?>
+<li><a href='<?=create_url($key, $method)?>'><?=$method?></a></li>
+<?php endforeach; ?>                
+</ul>
+<?php endif; ?>
+<?php endforeach; ?>                
+</ul>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

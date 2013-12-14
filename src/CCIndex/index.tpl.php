@@ -17,4 +17,8 @@ and change file permissions to 777. Make sure to change the .sqlite file in "dat
 controller. Point your browser to the following link.</p>
 <blockquote>
 <a href='<?=create_url('module/install')?>'>module/install</a>
+<<<<<<< HEAD
 </blockquote>
+=======
+</blockquote>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

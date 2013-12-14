@@ -1,20 +1,34 @@
 <?php
 /**
 * To manage and analyse all modules of Mini.
+<<<<<<< HEAD
 * 
+=======
+*
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 * @package MiniCore
 */
 class CCModules extends CObject implements IController {
 
   /**
+<<<<<<< HEAD
    * Constructor
    */
+=======
+* Constructor
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function __construct() { parent::__construct(); }
 
 
   /**
+<<<<<<< HEAD
    * Show a index-page and display what can be done through this controller.
    */
+=======
+* Show a index-page and display what can be done through this controller.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function Index() {
     $modules = new CMModules();
     $controllers = $modules->AvailableControllers();
@@ -24,9 +38,16 @@ class CCModules extends CObject implements IController {
                 ->AddInclude(__DIR__ . '/sidebar.tpl.php', array('modules'=>$allModules), 'sidebar');
   }
 
+<<<<<<< HEAD
   /**
    * Show a index-page and display what can be done through this controller.
    */
+=======
+
+  /**
+* Show a index-page and display what can be done through this controller.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function Install() {
     $modules = new CMModules();
     $results = $modules->Install();
@@ -36,9 +57,16 @@ class CCModules extends CObject implements IController {
                 ->AddInclude(__DIR__ . '/sidebar.tpl.php', array('modules'=>$allModules), 'sidebar');
   }
 
+<<<<<<< HEAD
   /**
    * Show a module and its parts.
    */
+=======
+
+  /**
+* Show a module and its parts.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function View($module) {
     if(!preg_match('/^C[a-zA-Z]+$/', $module)) {throw new Exception('Invalid characters in module name.');}
     $modules = new CMModules();
@@ -51,5 +79,9 @@ class CCModules extends CObject implements IController {
   }
 
 
+<<<<<<< HEAD
   
 }
+=======
+}
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

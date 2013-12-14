@@ -9,7 +9,14 @@
 </thead>
 <tbody>
 <?php foreach($modules as $module): ?>
+<<<<<<< HEAD
   <tr><td><?=$module['name']?></td><td><div class='<?=$module['result'][0]?>'><?=$module['result'][1]?></div></td></tr>
 <?php endforeach; ?>
 </tbody>
 </table>
+=======
+<tr><td><?=$module['name']?></td><td><div class='<?=$module['result'][0]?>'><?=$module['result'][1]?></div></td></tr>
+<?php endforeach; ?>
+</tbody>
+</table>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

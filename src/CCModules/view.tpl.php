@@ -19,6 +19,7 @@
 <caption>Details of module.</caption>
 <thead><tr><th>Characteristics</th><th>Applies to module</th></tr></thead>
 <tbody>
+<<<<<<< HEAD
   <tr><td>Part of Mini Core modules</td><td><?=$module['isMiniCore']?'Yes':'No'?></td></tr>
   <tr><td>Part of Mini CMF modules</td><td><?=$module['isMiniCMF']?'Yes':'No'?></td></tr>
   <tr><td>Implements interface(s)</td><td><?=empty($module['interface'])?'No':implode(', ', $module['interface'])?></td></tr>
@@ -26,6 +27,15 @@
   <tr><td>Model</td><td><?=$module['isModel']?'Yes':'No'?></td></tr>
   <tr><td>Has SQL</td><td><?=$module['hasSQL']?'Yes':'No'?></td></tr>
   <tr><td>Manageable as a module</td><td><?=$module['isManageable']?'Yes':'No'?></td></tr>
+=======
+<tr><td>Part of Mini Core modules</td><td><?=$module['isMiniCore']?'Yes':'No'?></td></tr>
+<tr><td>Part of Mini CMF modules</td><td><?=$module['isMiniCMF']?'Yes':'No'?></td></tr>
+<tr><td>Implements interface(s)</td><td><?=empty($module['interface'])?'No':implode(', ', $module['interface'])?></td></tr>
+<tr><td>Controller</td><td><?=$module['isController']?'Yes':'No'?></td></tr>
+<tr><td>Model</td><td><?=$module['isModel']?'Yes':'No'?></td></tr>
+<tr><td>Has SQL</td><td><?=$module['hasSQL']?'Yes':'No'?></td></tr>
+<tr><td>Manageable as a module</td><td><?=$module['isManageable']?'Yes':'No'?></td></tr>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
 </tbody>
 </table>
 
@@ -78,4 +88,8 @@
 <?php endif; ?>
 
 
+<<<<<<< HEAD
 <?php endif; ?>
+=======
+<?php endif; ?>
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * Sample controller for a site builder.
  */
 class CCMycontroller extends CObject implements IController {
@@ -7,12 +8,26 @@ class CCMycontroller extends CObject implements IController {
   /**
    * Constructor
    */
+=======
+* Sample controller for a site builder.
+*/
+class CCMycontroller extends CObject implements IController {
+
+  /**
+* Constructor
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function __construct() { parent::__construct(); }
   
 
   /**
+<<<<<<< HEAD
    * The page about me
    */
+=======
+* The page about me
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function Index() {
     $content = new CMContent(5);
     $this->views->SetTitle('About me'.htmlEnt($content['title']))
@@ -23,8 +38,13 @@ class CCMycontroller extends CObject implements IController {
 
 
   /**
+<<<<<<< HEAD
    * The blog.
    */
+=======
+* The blog.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function Blog() {
     $content = new CMContent();
     $this->views->SetTitle('My blog')
@@ -35,8 +55,13 @@ class CCMycontroller extends CObject implements IController {
 
 
   /**
+<<<<<<< HEAD
    * The guestbook.
    */
+=======
+* The guestbook.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function Guestbook() {
     $guestbook = new CMGuestbook();
     $form = new CFormMyGuestbook($guestbook);
@@ -50,12 +75,17 @@ class CCMycontroller extends CObject implements IController {
     
     $this->views->SetTitle('My Guestbook')
          ->AddInclude(__DIR__ . '/guestbook.tpl.php', array(
+<<<<<<< HEAD
             'entries'=>$guestbook->ReadAll(), 
+=======
+            'entries'=>$guestbook->ReadAll(),
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
             'form'=>$form,
          ));
   }
   
 
+<<<<<<< HEAD
 } 
 
 
@@ -72,6 +102,24 @@ class CFormMyGuestbook extends CForm {
   /**
    * Constructor
    */
+=======
+}
+
+
+/**
+* Form for the guestbook
+*/
+class CFormMyGuestbook extends CForm {
+
+  /**
+* Properties
+*/
+  private $object;
+
+  /**
+* Constructor
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function __construct($object) {
     parent::__construct();
     $this->objecyt = $object;
@@ -81,11 +129,20 @@ class CFormMyGuestbook extends CForm {
   
 
   /**
+<<<<<<< HEAD
    * Callback to add the form content to database.
    */
+=======
+* Callback to add the form content to database.
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function DoAdd($form, $object) {
     return $object->Add(strip_tags($form['data']['value']));
   }
  
  
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5

@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * A form for editing the user profile.
  * 
  * @package MiniCore
@@ -9,6 +10,17 @@ class CFormUserProfile extends CForm {
   /**
    * Constructor
    */
+=======
+* A form for editing the user profile.
+*
+* @package MiniCore
+*/
+class CFormUserProfile extends CForm {
+
+  /**
+* Constructor
+*/
+>>>>>>> 23f07a72a8006cf7b8a9c88acb7ba2df898eb6a5
   public function __construct($object, $user) {
     parent::__construct();
     $this->AddElement(new CFormElementText('acronym', array('readonly'=>true, 'value'=>$user['acronym'])))
